@@ -43,5 +43,19 @@ func print<T: CustomStringConvertible>(label: String,
 }
 
 example(of: "Behavior Subject") {
-  
+  let subject = BehaviorSubject(value: "Initial value")
+  let disposeBag = DisposeBag()
+  subject.onNext("X")
+  subject.subscribe {
+    print(label: "1) ", event: $0)
+  }
+  .disposed(by: disposeBag)
+
+  subject.onError(MyError.anError)
+  subject.subscribe {
+    print(label: "2)", event: $0)
+  }
+  .disposed(by: disposeBag)
 }
+
+
