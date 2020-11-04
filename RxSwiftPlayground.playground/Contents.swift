@@ -84,3 +84,14 @@ example(of: "Replay Subject") {
   }
   .disposed(by: disposeBag)
 }
+
+example(of: "Publish Relay") {
+  let relay = PublishRelay<String>()
+  let disposeBag = DisposeBag()
+  relay.accept("Knock knock, anyone home?")
+
+  relay.subscribe(onNext: { print($0) })
+    .disposed(by: disposeBag)
+
+  relay.accept("1")
+}
