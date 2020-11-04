@@ -1,0 +1,22 @@
+Build settings from command line:
+    SDKROOT = iphonesimulator13.2
+
+--- xcodebuild: WARNING: Unable to open project file '/Users/lucaspedrazoli/Desktop/Study/RxSwift/03-subjects/projects/starter/RxPlayground/RxSwiftPlayground.playground' in workspace 'RxSwiftPlayground.xcworkspace'.
+xcodebuild: error: Unable to find a destination matching the provided destination specifier:
+		{ name:iPhone 8 }
+
+	Unsupported device specifier option.
+	The device “My Mac” does not support the following options: name
+	Please supply only supported device specifier options.
+
+	Available destinations for the "RxCocoa" scheme:
+		{ platform:macOS, arch:x86_64, id:0B118DA5-BDAD-5D01-8AB5-57A19666966D }
+		{ platform:iOS Simulator, id:35A6530A-4901-4EEF-AE1D-B0A9E184E28F, OS:13.3, name:iPhone 11 Pro Max }
+
+	Ineligible destinations for the "RxCocoa" scheme:
+		{ platform:iOS, id:dvtdevice-DVTiPhonePlaceholder-iphoneos:placeholder, name:Generic iOS Device }
+		{ platform:iOS Simulator, id:dvtdevice-DVTiOSDeviceSimulatorPlaceholder-iphonesimulator:placeholder, name:Generic iOS Simulator Device }
+		{ platform:tvOS, id:dvtdevice-DVTiOSDevicePlaceholder-appletvos:placeholder, name:Generic tvOS Device }
+		{ platform:tvOS Simulator, id:dvtdevice-DVTiOSDeviceSimulatorPlaceholder-appletvsimulator:placeholder, name:Generic tvOS Simulator Device }
+		{ platform:watchOS, id:dvtdevice-DVTiOSDevicePlaceholder-watchos:placeholder, name:Generic watchOS Device }
+		{ platform:watchOS Simulator, id:dvtdevice-DVTiOSDeviceSimulatorPlaceholder-watchsimulator:placeholder, name:Generic watchOS Simulator Device }
