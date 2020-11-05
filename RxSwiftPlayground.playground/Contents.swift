@@ -95,3 +95,60 @@ example(of: "Publish Relay") {
 
   relay.accept("1")
 }
+
+example(of: "Behavior relay") {
+  let relay = BehaviorRelay(value: "Initial value")
+  let disposeBag = DisposeBag()
+
+  relay.accept("New initial value")
+
+  relay.subscribe { print(label: "1) ", event: $0) }
+    .disposed(by: disposeBag)
+
+  relay.accept("1")
+
+  relay.subscribe { print(label: "2) ", event: $0) }
+    .disposed(by: disposeBag)
+
+  relay.accept("2")
+
+  print(relay.value)
+}
+
+example(of: "Black jack challenge") {
+
+  let disposeBag = DisposeBag()
+  let dealtHand = PublishSubject<[(String, Int)]>()
+
+  func deal(_ cardCount: UInt) {
+    var deck = cards
+    var cardsRemaining = deck.count
+    var hand = [(String, Int)]()
+
+    for _ in 0..<cardCount {
+      let randomIndex = Int.random(in: 0..<cardsRemaining)
+      hand.append(deck[randomIndex])
+      deck.remove(at: randomIndex)
+      cardsRemaining -= 1
+    }
+
+    // Add code to update dealtHand here
+    let handPoints = points(for: hand)
+    if handPoints > 21 {
+      dealtHand
+        .onError(HandError.busted(points: handPoints))
+    } else {
+      dealtHand.onNext(hand)
+    }
+  }
+
+  // Add subscription to dealtHand here
+  dealtHand.subscribe(onNext: { element in
+    print(cardString(for: element), "for", points(for: element))
+  }, onError: { error in
+    print(String(describing: error))
+  })
+
+
+  deal(3)
+}
